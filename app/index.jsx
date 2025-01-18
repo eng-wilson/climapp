@@ -1,7 +1,10 @@
 import { Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 
 const Home = () => {
+  const router = useRouter();
+
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
       <Image
@@ -17,7 +20,10 @@ const Home = () => {
 
       <Text style={styles.screenTitle}>Boas-vindas!</Text>
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        onPress={() => router.push("/cities")}
+        style={styles.button}
+      >
         <Text>Entrar</Text>
       </TouchableOpacity>
     </LinearGradient>
