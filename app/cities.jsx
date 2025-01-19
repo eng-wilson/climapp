@@ -1,4 +1,6 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -6,6 +8,7 @@ import {
   FlatList,
   Text,
   Image,
+  SafeAreaView,
 } from "react-native";
 
 const Cities = () => {
@@ -24,29 +27,41 @@ const Cities = () => {
     { city: "São Luís", state: "MA", temperature: "36º" },
   ];
 
+  const [search, setSearch] = useState("");
+
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
-      <View>
-        <TextInput placeholder="Digite a cidade" />
-      </View>
+      <SafeAreaView style={styles.safeAreaView}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Digite a cidade"
+            style={styles.input}
+            placeholderTextColor="#fff"
+            color="#fff"
+            value={search}
+            onChangeText={setSearch}
+          />
+          <MaterialIcons name="search" size={24} color="#fff" />
+        </View>
 
-      <FlatList
-        data={cities}
-        contentContainerStyle={styles.listContainer}
-        renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <Image
-              source={require("../assets/images/image1.png")}
-              style={styles.image}
-            />
-            <Text style={styles.cityName}>
-              {item.city} - {item.state}
-            </Text>
+        <FlatList
+          data={cities}
+          contentContainerStyle={styles.listContainer}
+          renderItem={({ item }) => (
+            <View style={styles.listItem}>
+              <Image
+                source={require("../assets/images/image1.png")}
+                style={styles.image}
+              />
+              <Text style={styles.cityName}>
+                {item.city} - {item.state}
+              </Text>
 
-            <Text style={styles.temperature}>{item.temperature}</Text>
-          </View>
-        )}
-      />
+              <Text style={styles.temperature}>{item.temperature}</Text>
+            </View>
+          )}
+        />
+      </SafeAreaView>
     </LinearGradient>
   );
 };
@@ -54,9 +69,13 @@ const Cities = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 16,
+  },
+  safeAreaView: {
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
+    gap: 40,
   },
   listContainer: {
     width: "100%",
@@ -84,6 +103,22 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: "#fff",
     fontWeight: "bold",
+  },
+  inputContainer: {
+    width: "100%",
+    height: 36,
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    borderRadius: 16,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+  },
+  input: {
+    flex: 1,
+    height: "100%",
+    fontSize: 16,
   },
 });
 
