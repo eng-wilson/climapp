@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
@@ -28,6 +28,15 @@ const Cities = () => {
   ];
 
   const [search, setSearch] = useState("");
+  const [filteredCities, setFilteredCities] = useState(cities);
+
+  useEffect(() => {
+    setFilteredCities(
+      cities.filter((city) =>
+        city.city.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search]);
 
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
@@ -45,7 +54,7 @@ const Cities = () => {
         </View>
 
         <FlatList
-          data={cities}
+          data={filteredCities}
           contentContainerStyle={styles.listContainer}
           renderItem={({ item }) => (
             <View style={styles.listItem}>
