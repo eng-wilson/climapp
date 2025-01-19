@@ -13,21 +13,9 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
+import { cities } from "../data/cities";
+
 const Cities = () => {
-  const cities = [
-    { city: "São Paulo", state: "SP", temperature: "16º" },
-    { city: "Rio de Janeiro", state: "RJ", temperature: "20º" },
-    { city: "Belo Horizonte", state: "MG", temperature: "18º" },
-    { city: "Salvador", state: "BA", temperature: "22º" },
-    { city: "Brasília", state: "DF", temperature: "16º" },
-    { city: "Curitiba", state: "PR", temperature: "16º" },
-    { city: "Fortaleza", state: "CE", temperature: "24º" },
-    { city: "Manaus", state: "AM", temperature: "26º" },
-    { city: "Recife", state: "PE", temperature: "28º" },
-    { city: "Belém", state: "PA", temperature: "30º" },
-    { city: "Goiânia", state: "GO", temperature: "25º" },
-    { city: "São Luís", state: "MA", temperature: "36º" },
-  ];
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [filteredCities, setFilteredCities] = useState(cities);
@@ -38,7 +26,7 @@ const Cities = () => {
         city.city.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search]);
+  }, [search, cities]);
 
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
@@ -60,7 +48,7 @@ const Cities = () => {
           contentContainerStyle={styles.listContainer}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => router.push(`/${item.city}`)}
+              onPress={() => router.push(`/${item.id}`)}
               style={styles.listItem}
             >
               <Image
