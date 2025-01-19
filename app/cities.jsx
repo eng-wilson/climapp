@@ -9,7 +9,9 @@ import {
   Text,
   Image,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
+import { useRouter } from "expo-router";
 
 const Cities = () => {
   const cities = [
@@ -26,7 +28,7 @@ const Cities = () => {
     { city: "Goiânia", state: "GO", temperature: "25º" },
     { city: "São Luís", state: "MA", temperature: "36º" },
   ];
-
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [filteredCities, setFilteredCities] = useState(cities);
 
@@ -57,7 +59,10 @@ const Cities = () => {
           data={filteredCities}
           contentContainerStyle={styles.listContainer}
           renderItem={({ item }) => (
-            <View style={styles.listItem}>
+            <TouchableOpacity
+              onPress={() => router.push(`/${item.city}`)}
+              style={styles.listItem}
+            >
               <Image
                 source={require("../assets/images/image1.png")}
                 style={styles.image}
@@ -67,7 +72,7 @@ const Cities = () => {
               </Text>
 
               <Text style={styles.temperature}>{item.temperature}</Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </SafeAreaView>
