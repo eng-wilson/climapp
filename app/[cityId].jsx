@@ -43,7 +43,7 @@ const CityDetails = () => {
 
             <View style={styles.column}>
               <Image
-                source={require("../assets/images/image1.png")}
+                source={require("../assets/images/clouds.png")}
                 style={styles.mainCardImage}
               />
 
@@ -80,7 +80,7 @@ const CityDetails = () => {
               </View>
 
               <Image
-                source={require("../assets/images/image1.png")}
+                source={require("../assets/images/clouds.png")}
                 style={styles.cardImage}
               />
 
@@ -93,7 +93,7 @@ const CityDetails = () => {
               </View>
 
               <Image
-                source={require("../assets/images/image1.png")}
+                source={require("../assets/images/clouds.png")}
                 style={styles.cardImage}
               />
 
@@ -106,7 +106,7 @@ const CityDetails = () => {
               </View>
 
               <Image
-                source={require("../assets/images/image1.png")}
+                source={require("../assets/images/clouds.png")}
                 style={styles.cardImage}
               />
 
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   mainCardImage: {
     width: 100,
-    height: 100,
+    height: 90,
   },
   backButton: {
     position: "absolute",

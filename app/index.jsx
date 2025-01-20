@@ -14,7 +14,7 @@ const Home = () => {
         style={styles.logo}
       />
       <Image
-        source={require("../assets/images/image1.png")}
+        source={require("../assets/images/mainLogo.png")}
         resizeMode="cover"
         style={styles.image}
       />

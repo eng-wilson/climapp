@@ -52,7 +52,7 @@ const Cities = () => {
               style={styles.listItem}
             >
               <Image
-                source={require("../assets/images/image1.png")}
+                source={require("../assets/images/clouds.png")}
                 style={styles.image}
               />
               <Text style={styles.cityName}>
