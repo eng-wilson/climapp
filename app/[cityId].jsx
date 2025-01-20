@@ -1,9 +1,17 @@
 import React from "react";
-import { Text, StyleSheet, View, SafeAreaView, Image } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 import { cities } from "../data/cities";
+import { MaterialIcons } from "@expo/vector-icons";
 
 // import { Container } from './styles';
 
@@ -11,11 +19,19 @@ const CityDetails = () => {
   const { cityId } = useLocalSearchParams();
   const city = cities.find((city) => city.id == cityId);
 
+  const router = useRouter();
+
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.box}>
           <View style={styles.header}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => router.back()}
+            >
+              <MaterialIcons name="arrow-back" size={24} color="#fff" />
+            </TouchableOpacity>
             <Text style={styles.headerTitle}>
               {city.city} - {city.state}
             </Text>
@@ -117,7 +133,8 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 40,
+    position: "relative",
+    width: "100%",
   },
   headerTitle: {
     fontSize: 24,
@@ -213,6 +230,10 @@ const styles = StyleSheet.create({
   mainCardImage: {
     width: 100,
     height: 100,
+  },
+  backButton: {
+    position: "absolute",
+    left: 0,
   },
 });
 
