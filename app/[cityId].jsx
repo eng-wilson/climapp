@@ -4,16 +4,14 @@ import {
   StyleSheet,
   View,
   SafeAreaView,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { Image } from "expo-image";
 
 import { cities } from "../data/cities";
 import { MaterialIcons } from "@expo/vector-icons";
-
-// import { Container } from './styles';
 
 const CityDetails = () => {
   const { cityId } = useLocalSearchParams();
@@ -30,7 +28,7 @@ const CityDetails = () => {
               style={styles.backButton}
               onPress={() => router.back()}
             >
-              <MaterialIcons name="arrow-back" size={24} color="#fff" />
+              <MaterialIcons name="chevron-left" size={24} color="#fff" />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>
               {city.city} - {city.state}
@@ -53,13 +51,21 @@ const CityDetails = () => {
               <Text style={styles.mainCardDescription}>Sol entre nuvens</Text>
             </View>
 
-            <View>
+            <View style={styles.mainCardWeather}>
               <View style={styles.row}>
+                <Image
+                  source={require("../assets/icons/humidity.png")}
+                  style={styles.mainCardWeatherIcon}
+                />
                 <Text style={styles.mainCardWeatherTitle}>Humidity:</Text>
                 <Text style={styles.mainCardWeatherValue}>70%</Text>
               </View>
 
               <View style={styles.row}>
+                <Image
+                  source={require("../assets/icons/temperature.png")}
+                  style={styles.mainCardWeatherIcon}
+                />
                 <Text style={styles.mainCardWeatherTitle}>Min/Max:</Text>
                 <Text style={styles.mainCardWeatherValue}>20/34º</Text>
               </View>
@@ -138,7 +144,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
     color: "#fff",
   },
   footer: {
@@ -159,20 +165,21 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: "bold",
     color: "#fff",
     textAlign: "center",
+    fontFamily: "Montserrat_500Medium",
   },
   cardSubTitle: {
     fontSize: 13,
     color: "#fff",
     textAlign: "center",
+    fontFamily: "Montserrat_500Medium",
   },
   cardTemperature: {
     fontSize: 20,
-    fontWeight: "bold",
     color: "#fff",
     textAlign: "center",
+    fontFamily: "Montserrat_600SemiBold",
   },
   cardImage: {
     width: 26,
@@ -200,13 +207,13 @@ const styles = StyleSheet.create({
   },
   mainCardTitle: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
     color: "#fff",
     textAlign: "center",
   },
   mainCardTemperature: {
     fontSize: 43,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_700Bold",
     color: "#fff",
     textAlign: "center",
   },
@@ -214,10 +221,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#fff",
     textAlign: "center",
+    fontFamily: "Montserrat_400Regular",
   },
   mainCardWeatherTitle: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Montserrat_600SemiBold",
     color: "#fff",
     textAlign: "center",
   },
@@ -226,6 +234,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     marginLeft: "auto",
+    fontFamily: "Montserrat_500Medium",
   },
   mainCardImage: {
     width: 100,
@@ -234,6 +243,14 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     left: 0,
+  },
+  mainCardWeatherIcon: {
+    width: 24,
+    height: 24,
+  },
+  mainCardWeather: {
+    width: "100%",
+    gap: 8,
   },
 });
 

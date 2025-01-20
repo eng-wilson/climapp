@@ -100,11 +100,12 @@ const styles = StyleSheet.create({
   cityName: {
     fontSize: 16,
     color: "#fff",
+    fontFamily: "Montserrat_500Medium",
   },
   temperature: {
     fontSize: 25,
     color: "#fff",
-    fontWeight: "bold",
+    fontFamily: "Montserrat_700Bold",
   },
   inputContainer: {
     width: "100%",
@@ -121,6 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     fontSize: 16,
+    fontFamily: "Montserrat_500Medium",
   },
 });
 
