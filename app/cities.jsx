@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 
-import { cities } from "../data/cities";
+import cities from "../data/cities.json";
 
 const Cities = () => {
   const router = useRouter();
@@ -27,6 +27,8 @@ const Cities = () => {
       )
     );
   }, [search, cities]);
+
+  console.log(cities);
 
   return (
     <LinearGradient colors={["#00457D", "#05051F"]} style={styles.container}>
@@ -48,18 +50,16 @@ const Cities = () => {
           contentContainerStyle={styles.listContainer}
           renderItem={({ item }) => (
             <TouchableOpacity
-              onPress={() => router.push(`/${item.id}`)}
+              onPress={() => router.push(`/${item.city}`)}
               style={styles.listItem}
             >
               <Image
                 source={require("../assets/images/clouds.png")}
                 style={styles.image}
               />
-              <Text style={styles.cityName}>
-                {item.city} - {item.state}
-              </Text>
+              <Text style={styles.cityName}>{item.city}</Text>
 
-              <Text style={styles.temperature}>{item.temperature}</Text>
+              <Text style={styles.temperature}>{item.temp}°</Text>
             </TouchableOpacity>
           )}
         />

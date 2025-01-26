@@ -10,12 +10,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Image } from "expo-image";
 
-import { cities } from "../data/cities";
+import cities from "../data/cities.json";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const CityDetails = () => {
   const { cityId } = useLocalSearchParams();
-  const city = cities.find((city) => city.id == cityId);
+  const city = cities.find((city) => city.city == cityId);
 
   const router = useRouter();
 
@@ -30,15 +30,15 @@ const CityDetails = () => {
             >
               <MaterialIcons name="chevron-left" size={24} color="#fff" />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>
-              {city.city} - {city.state}
-            </Text>
+            <Text style={styles.headerTitle}>{city.city}</Text>
           </View>
 
           <View style={styles.mainCard}>
             <View style={styles.row}>
               <Text style={styles.mainCardTitle}>Hoje</Text>
-              <Text style={styles.mainCardTitle}>(01/12)</Text>
+              <Text style={styles.mainCardTitle}>
+                ({`${city.date.split("/")[0]}/${city.date.split("/")[1]}`})
+              </Text>
             </View>
 
             <View style={styles.column}>
@@ -47,8 +47,8 @@ const CityDetails = () => {
                 style={styles.mainCardImage}
               />
 
-              <Text style={styles.mainCardTemperature}>33º</Text>
-              <Text style={styles.mainCardDescription}>Sol entre nuvens</Text>
+              <Text style={styles.mainCardTemperature}>{city.temp}º</Text>
+              <Text style={styles.mainCardDescription}>{city.description}</Text>
             </View>
 
             <View style={styles.mainCardWeather}>
@@ -58,7 +58,9 @@ const CityDetails = () => {
                   style={styles.mainCardWeatherIcon}
                 />
                 <Text style={styles.mainCardWeatherTitle}>Humidity:</Text>
-                <Text style={styles.mainCardWeatherValue}>70%</Text>
+                <Text style={styles.mainCardWeatherValue}>
+                  {city.humidity}%
+                </Text>
               </View>
 
               <View style={styles.row}>
@@ -67,7 +69,9 @@ const CityDetails = () => {
                   style={styles.mainCardWeatherIcon}
                 />
                 <Text style={styles.mainCardWeatherTitle}>Min/Max:</Text>
-                <Text style={styles.mainCardWeatherValue}>20/34º</Text>
+                <Text style={styles.mainCardWeatherValue}>
+                  {city.forecast[0].min}º/{city.forecast[0].max}º
+                </Text>
               </View>
             </View>
           </View>
